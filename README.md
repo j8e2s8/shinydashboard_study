@@ -1,1 +1,1 @@
-# shinydashboard_study
+# shiny를 이용해서 dashboard 만드는 repository 입니다.
