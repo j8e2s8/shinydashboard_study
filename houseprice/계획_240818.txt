@@ -1,0 +1,62 @@
+1. 병원과 학교가 가까운 동내 2개 선택
+College_Creek
+Norh_Ames
+
+2. 좋은 집을 동내당 3개씩 고름.
+고르는 기준은.
+
+Gr_Liv_Area: 지상 생활 면적 (제곱피트 단위)
+Overall_Cond: 전체적인 상태 등급
+Bedroom_AbvGr: 지상 총 침실 수 (욕실 제외)
+Total_Bsmt_SF: 전체 지하실 면적 (제곱피트 단위)
+Garage_Area: 주차장 면적
+
+이렇게 변수 5개 사용.
+각 변수마다 20점.
+면적 3가지 녀석들은 줄 세워서 구간 나눠서 1부터 20점.
+
+OverallCond는
+       10	Very Excellent	20점(없음)
+       9	Excellent		18
+       8	Very Good		16
+       7	Good			14
+       6	Above Average	12
+       5	Average		10
+       4	Below Average	8
+       3	Fair			6
+       2	Poor			4
+       1	Very Poor		2
+
+TotRmsAbvGrd:
+방 0개		1점
+1		4
+2		7
+3		10
+4		12
+5		14
+6		16
+7(없음)	18
+8		20
+
+=================
+
+페이지 1
+개요: 
+지도(집 포인트, 동내색깔 구분)
+
+페이지 2
+개요2: 
+학교, 병원 테이블
+지도
+
+페이지 3
+점수를 줄것이다.
+빈도 그래프 5개.
+어떻게 점수 줄 것인지 기준 새운거 보여주기. (빈도그래프에 나타내기)
+
+페이지 4
+
+
+
+
+
