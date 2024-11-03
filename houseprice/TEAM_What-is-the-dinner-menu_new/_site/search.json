@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "practice presentation.html",
+    "href": "practice presentation.html",
+    "title": "practice presentation",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "practice presentation.html#quarto",
+    "href": "practice presentation.html#quarto",
+    "title": "practice presentation",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "practice presentation.html#running-code",
+    "href": "practice presentation.html#running-code",
+    "title": "practice presentation",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n2"
+  }
+]

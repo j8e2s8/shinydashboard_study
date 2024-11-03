@@ -1,0 +1,544 @@
+---
+title: "No.1 공인중개사"
+author: "홍대병 말기"
+format: dashboard
+theme: quartz
+dashboard:
+  nav-buttons:
+    - icon: github
+      href: https://github.com/sy-source/lsbigdata-project1/
+  scrolling: true
+logo: "hongdae.png"
+---
+
+# 분석 목적 및 데이터 설명
+
+## Sidebar {.sidebar}
+
+### 홍대병 말기
+
+- **조원**
+  - 윤대웅, 이다경, 장일준, 정은서
+- **한 마디**
+  - 우린 멋져
+
+### 내용
+
+- **주제**
+  - Ames 내 동네 선정 후 조건에 맞는 집 추천
+- **데이터**
+  - [Kaggle](https://docs.google.com/spreadsheets/d/1KJsmkQ_-6enmgCX6T1ZRNj6a_ep0OlNkr5T0y1JnB-E/edit?usp=sharing)
+  - [School and Hospital](https://docs.google.com/spreadsheets/d/12R-2BMHY_N-qL1Fi_jfQ-cCSFCPjgXtQW5uDeDN3Upc/edit?usp=sharing)
+
+
+## Row
+
+### title
+
+![](page0.jpg){width=100% style="display: block; margin: auto;"}
+
+# Ames 지역 동네 분석
+
+## Row {height=30%}
+
+```{python}
+#| component: valuebox
+#| title: Neighborhood
+dict(
+    icon = "geo-alt",
+    color = "primary",
+    value = 28
+)
+```
+
+```{python}
+#| component: valuebox
+#| title: Hospital
+dict(
+    icon = "capsule",
+    color = "warning",
+    value = 17
+)
+```
+
+```{python}
+#| component: valuebox
+#| title: School
+dict(
+    icon = "mortarboard",
+    color = "info",
+    value = 9
+)
+```
+
+## Row {height=70%}
+
+```{python}
+#| title: Ames 지역의 Neighborhood 별 SalePrice 비교
+#| padding: 0px
+from IPython.display import IFrame
+IFrame(src='map_ames_neig.html', width='100%', height='500px')
+```
+
+```{python}
+#| title: Ames 지역의 학교 병원 위치 확인
+#| padding: 0px
+from IPython.display import IFrame
+IFrame(src='map_ames_schs.html', width='100%', height='500px')
+```
+
+
+# 동네 선정
+
+## Row {height=60%}
+
+```{python}
+#| title: 조건에 맞는 Neighborhood 선정
+#| padding: 0px
+from IPython.display import IFrame
+IFrame(src='map_ames_total.html', width='100%', height='500px')
+```
+
+## Row {height=40%}
+
+```{python}
+#| title: 선정한 Neighborhood 및 선정 근거
+import pandas as pd
+from IPython.display import display, HTML
+
+# 데이터 생성
+data = {
+    '순위': [1, 2, 3, 4, 5],
+    'Neighborhood': ['Northpark_Villa', 'North_Ames', 'Briardale', 'Edwards', 'College_Creek'],
+    '중앙 위도': [42.050382, 42.042354, 42.052068, 42.022039, 42.019277],
+    '중앙 경도': [-93.625930, -93.617564, -93.628443, -93.666655, -93.686823],
+    '최소 학교 거리 (미터)': [203, 339, 230, 1056, 395],
+    '최소 병원 거리 (미터)': [600, 530, 876, 61, 767],
+    '평균 시설 거리 (미터)': [401, 435, 553, 558, 581]
+}
+
+# DataFrame 생성
+top_5_neighborhoods_df = pd.DataFrame(data)
+
+# DataFrame을 HTML 형식으로 변환하여 출력
+display(HTML(top_5_neighborhoods_df.to_html(index=False, classes='table table-striped table-hover')))
+
+```
+
+# 집 비교
+
+선택된 동내에서 **좋은 집** 을 찾기 위해서 점수를 주는 과정
+
+```{python}
+
+import pandas as pd
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+# import seaborn as sns
+import plotly.graph_objects as go
+
+# 데이터 불러오기
+train_df = pd.read_csv('../data/kaggle/houseprice/houseprice-with-lonlat.csv')
+train_df = train_df.rename(columns = {'Unnamed: 0' : 'Id'})
+train_df['Id'] = train_df['Id']-1
+
+loc = train_df.copy()
+
+# Gr_Liv_Area를 수치화한 Live_Score 만들기
+bins=[0, round(146.5,0), round(146.5*2,0), round(146.5*3,0), round(146.5*4,0),round(146.5*5,0),round(146.5*6,0),round(146.5*7,0),round(146.5*8,0),round(146.5*9,0),round(146.5*10,0),round(146.5*11,0),round(146.5*12,0),round(146.5*13,0),round(146.5*14,0),round(146.5*15,0),round(146.5*16,0),round(146.5*17,0),round(146.5*18,0),round(146.5*19,0)]
+bins = list(map(int,bins))
+loc = loc.sort_values('Gr_Liv_Area').reset_index(drop=True)
+for i in range(len(bins)):
+    if i != 19:
+        loc.loc[bins[i]:bins[i+1]-1 , 'Live_Score'] = i+1
+    if i == 19 :
+        loc.loc[bins[i]: , 'Live_Score'] = i+1
+
+loc = loc.sort_values('Id').reset_index(drop=True)
+
+
+# Overall_Cond을 수치화한 Overall_Score 만들기
+# 품질 순위 : 'Very_Poor','Poor','Fair','Below_Average','Average','Above_Average','Good','Very_Good','Excellent','Very_Excellent'
+rank=['Very_Poor','Poor','Fair','Below_Average','Average','Above_Average','Good','Very_Good','Excellent','Very_Excellent']
+for i in range(len(rank)):
+    loc.loc[loc['Overall_Cond']==rank[i],'Overall_Score']=math.floor((i+1)*2)
+
+
+
+# 먼저 등급에 순서를 주기 위해 Categorical 데이터 타입을 사용
+rank_order = ['Very_Poor', 'Poor', 'Fair', 'Below_Average', 'Average', 'Above_Average', 'Good', 'Very_Good', 'Excellent', 'Very_Excellent']
+loc['Overall_Cond'] = pd.Categorical(loc['Overall_Cond'], categories=rank_order, ordered=True)
+
+# 이제 정렬된 순서대로 value_counts를 계산
+loc_sub = loc['Overall_Cond'].value_counts().sort_index()
+
+# Bedroom_AbvGr을 수치화한 Bedroom_Score 만들기   (오류 메시지가 뜨긴 하지만, 문제 없음)
+room=loc['Bedroom_AbvGr'].unique()
+for i in range(len(room)):
+    if room[i] == 8:
+        loc.loc[loc['Bedroom_AbvGr']==room[i],'Bedroom_Score']=20
+    elif room[i] == 7:
+        loc.loc[loc['Bedroom_AbvGr']==room[i],'Bedroom_Score']=18
+    elif room[i] == 6:
+        loc.loc[loc['Bedroom_AbvGr']==room[i],'Bedroom_Score']=16
+    elif room[i] == 5:
+        loc.loc[loc['Bedroom_AbvGr']==room[i],'Bedroom_Score']=14
+    elif room[i] == 4:
+        loc.loc[loc['Bedroom_AbvGr']==room[i],'Bedroom_Score']=12
+    elif room[i] == 3:
+        loc.loc[loc['Bedroom_AbvGr']==room[i],'Bedroom_Score']=10
+    elif room[i] == 2:
+        loc.loc[loc['Bedroom_AbvGr']==room[i],'Bedroom_Score']=7
+    elif room[i] == 1:
+        loc.loc[loc['Bedroom_AbvGr']==room[i],'Bedroom_Score']=4
+    else:
+        loc.loc[loc['Bedroom_AbvGr']==room[i],'Bedroom_Score']=1
+
+
+# Total_Bsmt_SF를 수치화한 Base_Score 만들기
+loc = loc.sort_values('Total_Bsmt_SF').reset_index(drop=True)
+for i in range(len(bins)):
+    if i != 19:
+        loc.loc[bins[i]:bins[i+1]-1 , 'Base_Score'] = i+1
+    if i == 19 :
+        loc.loc[bins[i]: , 'Base_Score'] = i+1
+loc = loc.sort_values('Id').reset_index(drop=True)
+
+
+# Garage_Area를 수치화한 Garage_Score 만들기
+loc = loc.sort_values('Garage_Area').reset_index(drop=True)
+for i in range(len(bins)):
+    if i != 19:
+        loc.loc[bins[i]:bins[i+1]-1 , 'Garage_Score'] = i+1
+    if i == 19 :
+        loc.loc[bins[i]: , 'Garage_Score'] = i+1
+
+loc = loc.sort_values('Id').reset_index(drop=True)
+
+# 타입 int로 바꾸기
+loc['Overall_Score'] = loc['Overall_Score'].astype(int)
+loc['Bedroom_Score'] = loc['Bedroom_Score'].astype(int)
+loc['Live_Score'] = loc['Live_Score'].astype(int)
+loc['Base_Score'] = loc['Base_Score'].astype(int)
+loc['Garage_Score'] = loc['Garage_Score'].astype(int)
+
+# 총합 Total_Sum 변수 만들기
+loc['Total_Sum'] = loc['Overall_Score']+loc['Bedroom_Score']+loc['Live_Score']+loc['Base_Score']+loc['Garage_Score']
+
+loc1 = loc[loc['Neighborhood']=='North_Ames']
+loc2 = loc[loc['Neighborhood']=='Northpark_Villa']
+loc3 = loc[loc['Neighborhood']=='Briardale']
+loc4 = loc[loc['Neighborhood']=='Edwards']
+loc5 = loc[loc['Neighborhood']=='College_Creek']
+
+```
+
+```{python}
+#| output: False
+import plotly.graph_objects as go
+
+loc_sub = loc[['Gr_Liv_Area' ]].sort_values('Gr_Liv_Area')
+loc_sub['Id'] = np.arange(len(loc['Gr_Liv_Area']))
+loc_sub['Id'] = loc_sub['Id'].astype(str)
+
+fig = go.Figure()
+
+fig.add_trace(
+    go.Bar(
+        x=loc_sub['Id'] , y=loc_sub['Gr_Liv_Area'], 
+        marker = {'color':'pink',# 막대 색상 또는 리스트를 이용하여 각 막대 색상 변경가능
+                  'line':{'color':'pink', 'width':3} # 막대 테두리 설정 
+                  })
+                  )
+                  
+fig.update_layout(title = dict(text = '각 집들의 생활 면적 오름차순', x=0.5),
+                     hoverlabel_font_color="white"
+                    )
+                    
+for i in range(len(bins)):
+    fig.add_vline(x = bins[i], line_width= 1, line_dash='dash', line_color = 'chocolate')
+
+bins2=np.array([round(146.5,0), round(146.5*2,0), round(146.5*3,0), round(146.5*4,0),round(146.5*5,0),round(146.5*6,0),round(146.5*7,0),round(146.5*8,0),round(146.5*9,0),round(146.5*10,0),round(146.5*11,0),round(146.5*12,0),round(146.5*13,0),round(146.5*14,0),round(146.5*15,0),round(146.5*16,0),round(146.5*17,0),round(146.5*18,0),round(146.5*19,0), round(146.5*20,0)])
+bins2 = bins2 - 73
+h = [5000]*20
+for i in range((len(bins2))):
+    fig.add_annotation(
+            x= bins2[i], y= h[i],
+            font_color = 'chocolate',
+            font_size = 20,
+            showarrow=False,
+            text= f"{i+1}점")
+                    
+fig.update_xaxes(title_text = 'Id')
+fig.update_yaxes(title_text = '생활 면적')
+```
+
+```{python}
+#| output: False
+
+# 먼저 등급에 순서를 주기 위해 Categorical 데이터 타입을 사용
+rank_order = ['Very_Poor', 'Poor', 'Fair', 'Below_Average', 'Average', 'Above_Average', 'Good', 'Very_Good', 'Excellent', 'Very_Excellent']
+loc['Overall_Cond'] = pd.Categorical(loc['Overall_Cond'], categories=rank_order, ordered=True)
+
+# 이제 정렬된 순서대로 value_counts를 계산
+loc_sub = loc['Overall_Cond'].value_counts().sort_index()
+
+fig2 = go.Figure()
+
+fig2.add_trace(
+    go.Bar(
+        x=loc_sub.index, 
+        y=loc_sub.values, 
+        marker={'color': 'pink',
+                'line': {'color': 'pink', 'width': 3}}
+    )
+)
+
+fig2.update_layout(
+    title=dict(text='침실 개수 빈도', x=0.5),
+    hoverlabel_font_color="white"
+)
+
+# 점수 추가
+bins2 = list(range(10))
+h_overall = [max(loc_sub.values)] * 10  # 높이 설정을 가장 높은 빈도값으로
+for i, score in enumerate((i+1)*2 for i in bins2):
+    fig2.add_annotation(
+        x=loc_sub.index[i], y=h_overall[i],
+        font_color='chocolate',
+        font_size=20,
+        showarrow=False,
+        text=f"{score}점"
+    )
+
+fig2.update_xaxes(title_text='품질')
+fig2.update_yaxes(title_text='빈도')
+
+```
+
+```{python}
+#| output: False
+
+loc_sub = loc['Bedroom_AbvGr'].value_counts().sort_index()
+
+fig3 = go.Figure()
+
+bins3=[0,1,2,3,4,5,6,7,8]
+h_bedroom = [1550]*20
+score = [1,4,7,10,12,14,16,18,20]
+
+
+for i in range((len(bins3))):
+    fig3.add_annotation(
+            x= bins3[i], y= h_bedroom[i],
+            font_color = 'chocolate',
+            font_size = 20,
+            showarrow=False,
+            text= f"{score[i]}점")
+
+fig3.add_trace(
+    go.Bar(
+        x=loc_sub.index , y=loc_sub.values, 
+        marker = {'color':'pink',# 막대 색상 또는 리스트를 이용하여 각 막대 색상 변경가능
+                  'line':{'color':'pink', 'width':3} # 막대 테두리 설정 
+                  })
+                  )
+                  
+fig3.update_layout(title = dict(text = '침실 개수 빈도', x=0.5),
+                    hoverlabel_font_color="white"
+                    )
+                    
+        
+fig3.update_xaxes(title_text = '침실 개수')
+fig3.update_yaxes(title_text = '빈도')
+```
+
+```{python}
+#| output: False
+
+bins2=np.array([round(146.5,0), round(146.5*2,0), round(146.5*3,0), round(146.5*4,0),round(146.5*5,0),round(146.5*6,0),round(146.5*7,0),round(146.5*8,0),round(146.5*9,0),round(146.5*10,0),round(146.5*11,0),round(146.5*12,0),round(146.5*13,0),round(146.5*14,0),round(146.5*15,0),round(146.5*16,0),round(146.5*17,0),round(146.5*18,0),round(146.5*19,0), round(146.5*20,0)])
+bins2 = bins2 - 73
+
+loc_sub = loc[['Total_Bsmt_SF' ]].sort_values('Total_Bsmt_SF')
+loc_sub['Id'] = np.arange(len(loc['Total_Bsmt_SF']))
+loc_sub['Id'] = loc_sub['Id'].astype(str)
+
+fig4 = go.Figure()
+
+fig4.add_trace(
+    go.Bar(
+        x=loc_sub['Id'] , y=loc_sub['Total_Bsmt_SF'], 
+        marker = {'color':'pink',# 막대 색상 또는 리스트를 이용하여 각 막대 색상 변경가능
+                  'line':{'color':'pink', 'width':3} # 막대 테두리 설정 
+                  })
+                  )
+                  
+fig4.update_layout(title = dict(text = '각 집들의 지하실 면적 오름차순', x=0.5),
+                hoverlabel_font_color="white"
+                    )
+                    
+
+for i in range(len(bins)):
+    fig4.add_vline(x = bins[i],
+    line_width= 1, 
+    line_dash='dash', 
+    line_color = 'chocolate')
+
+
+h_basement = [6000]*20
+for i in range((len(bins2))):
+    fig4.add_annotation(
+            x= bins2[i], y= h_basement[i],
+            font_color = 'chocolate',
+            font_size = 20,
+            showarrow=False,
+            text= f"{i+1}점")
+                    
+fig4.update_xaxes(title_text = 'Id')
+fig4.update_yaxes(title_text = '자하실 면적')
+
+```
+
+```{python}
+#| output: False
+
+bins2=np.array([round(146.5,0), round(146.5*2,0), round(146.5*3,0), round(146.5*4,0),round(146.5*5,0),round(146.5*6,0),round(146.5*7,0),round(146.5*8,0),round(146.5*9,0),round(146.5*10,0),round(146.5*11,0),round(146.5*12,0),round(146.5*13,0),round(146.5*14,0),round(146.5*15,0),round(146.5*16,0),round(146.5*17,0),round(146.5*18,0),round(146.5*19,0), round(146.5*20,0)])
+bins2 = bins2 - 73
+
+loc_sub = loc[['Garage_Area' ]].sort_values('Garage_Area')
+loc_sub['Id'] = np.arange(len(loc['Garage_Area']))
+loc_sub['Id'] = loc_sub['Id'].astype(str)
+
+
+fig5 = go.Figure()
+
+fig5.add_trace(
+    go.Bar(
+        x=loc_sub['Id'] , y=loc_sub['Garage_Area'], 
+        marker = {'color':'pink',# 막대 색상 또는 리스트를 이용하여 각 막대 색상 변경가능
+                  'line':{'color':'pink', 'width':3} # 막대 테두리 설정 
+                  })
+                  )
+                  
+fig5.update_layout(title = dict(text = '각 집들의 차고 면적 오름차순', x=0.5),
+                hoverlabel_font_color="white"
+                    )
+                    
+for i in range(len(bins)):
+    fig5.add_vline(x = bins[i],
+    line_width= 1, 
+    line_dash='dash', 
+    line_color = 'chocolate')
+
+h_garage = [1400]*20
+for i in range((len(bins2))):
+    fig5.add_annotation(
+            x= bins2[i], y= h_garage[i],
+            font_color = 'chocolate',
+            font_size = 20,
+            showarrow=False,
+            text= f"{i+1}점")
+                    
+fig5.update_xaxes(title_text = 'Id')
+fig5.update_yaxes(title_text = '차고 면적')
+
+```
+
+## Row {.tabset}
+
+```{python}
+#| title: 지상 생활 면적 (Gr_Liv_Area)
+
+fig.show()
+```
+
+```{python}
+#| title: 전체적인 상태 등급 (Overall_Cond)
+
+fig2.show()
+```
+
+```{python}
+#| title: 지상 총 침실 수 (Bedroom_AbvGr)
+
+fig3.show()
+
+```
+
+```{python}
+#| title: 전체 지하실 면적 (Total_Bsmt_SF)
+
+fig4.show()
+
+```
+
+```{python}
+#| title: 주차장 면적 (Garage_Area)
+
+fig5.show()
+```
+
+# 선정된 집
+
+## Row{height=65%}
+```{python}
+#| title: 선정된 집 위치 확인
+#| padding: 0px
+from IPython.display import IFrame
+IFrame(src='map_ames_total2.html', width='100%', height='500px')
+```
+
+## Row{height=35%}
+```{python}
+import pandas as pd
+from IPython.display import display, HTML
+
+# 데이터 생성
+data = {
+    'Rank': [1, 2, 3, 4, 5],
+    'Neighborhood': ['Edwards', 'Northpark Villa', 'College Creek', 'North Ames', 'Briardale'],
+    'Price': ['$415,000', '$200,000', '$475,000', '$143,000', '$125,000'],
+    'Score': [89, 81, 79, 52, 45]
+}
+
+# DataFrame 생성
+ranked_houses_df = pd.DataFrame(data)
+
+# DataFrame을 HTML로 변환하여 표시
+html_table = ranked_houses_df.to_html(index=False)
+
+# Display the table
+display(HTML(html_table))
+
+```
+
+# 결론
+![](final.png){width=35% style="display: block; margin: auto;"}
+
+```{python}
+import pandas as pd
+from IPython.display import display, HTML
+
+# 데이터 생성
+data = {
+    'Rank': [1, 2, 3, 4, 5],
+    'Neighborhood': ['Edwards', 'Northpark Villa', 'College Creek', 'North Ames', 'Briardale'],
+    'Price': ['$415,000', '$200,000', '$475,000', '$143,000', '$125,000'],
+    'Score': [89, 81, 79, 52, 45]
+}
+
+# DataFrame 생성
+ranked_houses_df = pd.DataFrame(data)
+
+# DataFrame을 HTML로 변환하여 표시
+html_table = ranked_houses_df.to_html(index=False)
+
+# Display the table
+display(HTML(html_table))
+
+```
+
+**지갑 사정에 따라 구매할 집을 결정해 보세요!**
+
+

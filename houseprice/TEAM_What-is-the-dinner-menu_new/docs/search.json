@@ -1,0 +1,135 @@
+[
+  {
+    "objectID": "practice presentation.html",
+    "href": "practice presentation.html",
+    "title": "practice presentation",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "practice presentation.html#quarto",
+    "href": "practice presentation.html#quarto",
+    "title": "practice presentation",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "practice presentation.html#running-code",
+    "href": "practice presentation.html#running-code",
+    "title": "practice presentation",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n2"
+  },
+  {
+    "objectID": "presentation 0.html",
+    "href": "presentation 0.html",
+    "title": "presentation 0",
+    "section": "",
+    "text": "필요한 패키지 불러오기\n\nimport pandas as pd\nimport numpy as np\nimport seaborn as sns\nimport matplotlib.pyplot as plt\n\n\n\n데이터 불러오기\n\nmarket = pd.read_excel(\"data/traditionalmarket.xlsx\")\nmarket2 = market.copy()\n\n\n\n변수명 재설정하기\n\nmarket2 = market2.rename(columns = {\"시장명\" : \"market_name\", \n                                    \"시장유형\" : \"type\",\n                                    \"소재지도로명주소\" : \"open_period\",\n                                    \"소재지지번주소\" : \"address_old\",\n                                    \"점포수\" : \"market_count\",\n                                    \"사용가능상품권\" : \"certificate\",\n                                    \"공중화장실 보유여부\" :\"public_toilet\",\n                                    \"주차장 보유여부\" : \"parking_lot\",\n                                    \"개설년도\" : \"year\",\n                                    \"데이터기준일자\" : \"data_date\"})\n\n\n\n데이터 변수별 요약통계량과 정보 확인하기\n\nmarket2['market_count'].describe()\nmarket2[\"public_toilet\"].info()\nmarket2[\"parking_lot\"].info()\n\n&lt;class 'pandas.core.series.Series'&gt;\nRangeIndex: 1439 entries, 0 to 1438\nSeries name: public_toilet\nNon-Null Count  Dtype \n--------------  ----- \n1439 non-null   object\ndtypes: object(1)\nmemory usage: 11.4+ KB\n&lt;class 'pandas.core.series.Series'&gt;\nRangeIndex: 1439 entries, 0 to 1438\nSeries name: parking_lot\nNon-Null Count  Dtype \n--------------  ----- \n1439 non-null   object\ndtypes: object(1)\nmemory usage: 11.4+ KB\n\n\n\n\nmarket_scale 파생변수 생성과 막대그래프 확인\n\nplt.clf()\nmarket2 = market2.assign(market_scale = np.where(market2[\"market_count\"] &gt;= 134, \"large\", \n                                        np.where(market2[\"market_count\"] &gt;= 50, \"medium\", \"small\")))\nsns.countplot(data = market2, x = 'market_scale', hue = 'market_scale')\nplt.show()\n\n\n\n\n\n\n\n\n\n\nconv_level 파생변수 생성과 막대그래프 확인\n\nplt.clf()\nmarket2['conv_level'] = np.where((market2['public_toilet'] == 'Y') & (market2['parking_lot'] == 'Y'), 'high', \n                   np.where((market2['public_toilet'] == 'N') & (market2['public_toilet'] == 'N') , 'low', 'intermediate'))\nsns.countplot(data = market2, x = 'conv_level', hue = 'conv_level')\nplt.show()\n\n\n\n\n\n\n\n\n\n\n시장유형 및 점포규모의 시장개수 알아보기\n\ndf = market2.groupby([\"type\", \"market_scale\"], as_index = False) \\\n            .agg(market_count = (\"market_scale\", \"count\"))\ndf.sort_values('market_count', ascending = False)\n\n\n\n\n\n\n\n\ntype\nmarket_scale\nmarket_count\n\n\n\n\n1\n상설\nmedium\n532\n\n\n0\n상설\nlarge\n281\n\n\n2\n상설\nsmall\n189\n\n\n4\n상설+정기\nmedium\n145\n\n\n8\n정기\nsmall\n117\n\n\n3\n상설+정기\nlarge\n66\n\n\n5\n상설+정기\nsmall\n48\n\n\n7\n정기\nmedium\n46\n\n\n6\n정기\nlarge\n15\n\n\n\n\n\n\n\n\n\n막대그래프로 알아보기\n\nplt.clf()\nsns.barplot(data = df, x = 'type', y = 'market_count', hue = 'market_scale')\nplt.show()\n\nC:\\DS\\Python\\Python312\\Lib\\site-packages\\IPython\\core\\pylabtools.py:170: UserWarning:\n\nGlyph 49345 (\\N{HANGUL SYLLABLE SANG}) missing from font(s) DejaVu Sans.\n\nC:\\DS\\Python\\Python312\\Lib\\site-packages\\IPython\\core\\pylabtools.py:170: UserWarning:\n\nGlyph 49444 (\\N{HANGUL SYLLABLE SEOL}) missing from font(s) DejaVu Sans.\n\nC:\\DS\\Python\\Python312\\Lib\\site-packages\\IPython\\core\\pylabtools.py:170: UserWarning:\n\nGlyph 51221 (\\N{HANGUL SYLLABLE JEONG}) missing from font(s) DejaVu Sans.\n\nC:\\DS\\Python\\Python312\\Lib\\site-packages\\IPython\\core\\pylabtools.py:170: UserWarning:\n\nGlyph 44592 (\\N{HANGUL SYLLABLE GI}) missing from font(s) DejaVu Sans."
+  },
+  {
+    "objectID": "presentation.html",
+    "href": "presentation.html",
+    "title": "KB데이터",
+    "section": "",
+    "text": "60대 이상 소비자를 타켓으로 어느 지역을 활성화하는게 효과적일까?"
+  },
+  {
+    "objectID": "presentation.html#연령-구간별-인구-비율-계산",
+    "href": "presentation.html#연령-구간별-인구-비율-계산",
+    "title": "KB데이터",
+    "section": "(연령 구간별 인구 비율 계산)",
+    "text": "(연령 구간별 인구 비율 계산)\n\nmarket_pop['pct_under20'] = round(market_pop['under20'] / market_pop['total_pop'] * 100, 1) #미성년자 비율 추가 + 소숫점 정리\nmarket_pop['pct_2050'] = round(market_pop['2050'] / market_pop['total_pop'] * 100, 1)\nmarket_pop['pct_over60'] = round(market_pop['over60'] / market_pop['total_pop'] * 100, 1)"
+  },
+  {
+    "objectID": "presentation.html#시장.점포-1개-당-60대-이상-인구-비율-계산",
+    "href": "presentation.html#시장.점포-1개-당-60대-이상-인구-비율-계산",
+    "title": "KB데이터",
+    "section": "(시장.점포 1개 당 60대 이상 인구 비율 계산)",
+    "text": "(시장.점포 1개 당 60대 이상 인구 비율 계산)\n\nmarket_pop['old_per_market'] = round(market_pop['over60'] / market_pop['market_count'], 1)\nmarket_pop['old_per_store'] = round(market_pop['over60'] / market_pop['store_sum'], 1)"
+  },
+  {
+    "objectID": "presentation.html#대-이상-인구-비율이-평균보다-큰-지역-작은-지역-구분",
+    "href": "presentation.html#대-이상-인구-비율이-평균보다-큰-지역-작은-지역-구분",
+    "title": "KB데이터",
+    "section": "(60대 이상 인구 비율이 평균보다 큰 지역, 작은 지역 구분)",
+    "text": "(60대 이상 인구 비율이 평균보다 큰 지역, 작은 지역 구분)\n\n# 60대 이상 비율의 평균을 구한 뒤 그것보다 높거나 낮다는것 표시.\nmarket_pop['over60_mean_updown'] = \\\n  np.where(market_pop['pct_over60'] &gt;= market_pop['pct_over60'].mean(), 'UP', 'DOWN')"
+  },
+  {
+    "objectID": "presentation.html#평균-기준으로-한-근거-60대-이상-박스플롯",
+    "href": "presentation.html#평균-기준으로-한-근거-60대-이상-박스플롯",
+    "title": "KB데이터",
+    "section": "평균 기준으로 한 근거 : 60대 이상 박스플롯",
+    "text": "평균 기준으로 한 근거 : 60대 이상 박스플롯\n\npx.box(data_frame = market_pop, y = 'pct_over60')"
+  },
+  {
+    "objectID": "presentation.html#온누리-상품권을-사용하는-시장-수",
+    "href": "presentation.html#온누리-상품권을-사용하는-시장-수",
+    "title": "KB데이터",
+    "section": "(온누리 상품권을 사용하는 시장 수)",
+    "text": "(온누리 상품권을 사용하는 시장 수)\n\nmarket_pop['pct_certificate'] = \\\n round(market_pop['certificate_count'] / market_pop['market_count'] *100, 1)\n\n\nmarket_pop.head()\n\n\n\n\n\n\n\n\nregion\nmarket_count\nstore_sum\ncertificate_count\ntotal_pop\nunder20\n2050\nover60\npct_under20\npct_2050\npct_over60\nold_per_market\nold_per_store\nover60_mean_updown\npct_certificate\n\n\n\n\n0\n강원도\n58\n6811\n54\n1549507\n294348\n894249\n360910\n19.0\n57.7\n23.3\n6222.6\n53.0\nUP\n93.1\n\n\n1\n경기도\n130\n18977\n121\n12522606\n2730973\n7878980\n1912653\n21.8\n62.9\n15.3\n14712.7\n100.8\nDOWN\n93.1\n\n\n2\n경상남도\n155\n18156\n102\n3364702\n702154\n2004453\n658095\n20.9\n59.6\n19.6\n4245.8\n36.2\nUP\n65.8\n\n\n3\n경상북도\n149\n16582\n106\n2702826\n500721\n1544234\n657871\n18.5\n57.1\n24.3\n4415.2\n39.7\nUP\n71.1\n\n\n4\n광주광역시\n26\n3411\n25\n1472199\n340705\n895137\n236357\n23.1\n60.8\n16.1\n9090.7\n69.3\nDOWN\n96.2"
+  },
+  {
+    "objectID": "presentation 1.html",
+    "href": "presentation 1.html",
+    "title": "presentation 1",
+    "section": "",
+    "text": "60대 이상 소비자를 타켓으로 어느 지역을 활성화하는게 효과적일까?"
+  },
+  {
+    "objectID": "presentation 1.html#연령-구간별-인구-비율-계산",
+    "href": "presentation 1.html#연령-구간별-인구-비율-계산",
+    "title": "presentation 1",
+    "section": "(연령 구간별 인구 비율 계산)",
+    "text": "(연령 구간별 인구 비율 계산)\n\nmarket_pop['pct_under20'] = round(market_pop['under20'] / market_pop['total_pop'] * 100, 1) #미성년자 비율 추가 + 소숫점 정리\nmarket_pop['pct_2050'] = round(market_pop['2050'] / market_pop['total_pop'] * 100, 1)\nmarket_pop['pct_over60'] = round(market_pop['over60'] / market_pop['total_pop'] * 100, 1)"
+  },
+  {
+    "objectID": "presentation 1.html#시장.점포-1개-당-60대-이상-인구-비율-계산",
+    "href": "presentation 1.html#시장.점포-1개-당-60대-이상-인구-비율-계산",
+    "title": "presentation 1",
+    "section": "(시장.점포 1개 당 60대 이상 인구 비율 계산)",
+    "text": "(시장.점포 1개 당 60대 이상 인구 비율 계산)\n\nmarket_pop['old_per_market'] = round(market_pop['over60'] / market_pop['market_count'], 1)\nmarket_pop['old_per_store'] = round(market_pop['over60'] / market_pop['store_sum'], 1)"
+  },
+  {
+    "objectID": "presentation 1.html#대-이상-인구-비율이-평균보다-큰-지역-작은-지역-구분",
+    "href": "presentation 1.html#대-이상-인구-비율이-평균보다-큰-지역-작은-지역-구분",
+    "title": "presentation 1",
+    "section": "(60대 이상 인구 비율이 평균보다 큰 지역, 작은 지역 구분)",
+    "text": "(60대 이상 인구 비율이 평균보다 큰 지역, 작은 지역 구분)\n\n# 60대 이상 비율의 평균을 구한 뒤 그것보다 높거나 낮다는것 표시.\nmarket_pop['over60_mean_updown'] = \\\n  np.where(market_pop['pct_over60'] &gt;= market_pop['pct_over60'].mean(), 'UP', 'DOWN')"
+  },
+  {
+    "objectID": "presentation 1.html#평균-기준으로-한-근거-60대-이상-박스플롯",
+    "href": "presentation 1.html#평균-기준으로-한-근거-60대-이상-박스플롯",
+    "title": "presentation 1",
+    "section": "평균 기준으로 한 근거 : 60대 이상 박스플롯",
+    "text": "평균 기준으로 한 근거 : 60대 이상 박스플롯\n\npx.box(data_frame = market_pop, y = 'pct_over60')"
+  },
+  {
+    "objectID": "presentation 1.html#온누리-상품권을-사용하는-시장-수",
+    "href": "presentation 1.html#온누리-상품권을-사용하는-시장-수",
+    "title": "presentation 1",
+    "section": "(온누리 상품권을 사용하는 시장 수)",
+    "text": "(온누리 상품권을 사용하는 시장 수)\n\nmarket_pop['pct_certificate'] = \\\n round(market_pop['certificate_count'] / market_pop['market_count'] *100, 1)\n\n\nmarket_pop.head()\n\n\n\n\n\n\n\n\nregion\nmarket_count\nstore_sum\ncertificate_count\ntotal_pop\nunder20\n2050\nover60\npct_under20\npct_2050\npct_over60\nold_per_market\nold_per_store\nover60_mean_updown\npct_certificate\n\n\n\n\n0\n강원도\n58\n6811\n54\n1549507\n294348\n894249\n360910\n19.0\n57.7\n23.3\n6222.6\n53.0\nUP\n93.1\n\n\n1\n경기도\n130\n18977\n121\n12522606\n2730973\n7878980\n1912653\n21.8\n62.9\n15.3\n14712.7\n100.8\nDOWN\n93.1\n\n\n2\n경상남도\n155\n18156\n102\n3364702\n702154\n2004453\n658095\n20.9\n59.6\n19.6\n4245.8\n36.2\nUP\n65.8\n\n\n3\n경상북도\n149\n16582\n106\n2702826\n500721\n1544234\n657871\n18.5\n57.1\n24.3\n4415.2\n39.7\nUP\n71.1\n\n\n4\n광주광역시\n26\n3411\n25\n1472199\n340705\n895137\n236357\n23.1\n60.8\n16.1\n9090.7\n69.3\nDOWN\n96.2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "안녕하세요.\n“오늘 저녁 밥 뭘까?” 팀 페이지입니다.\n조원: 이태현, 장일준, 정아영, 정은서"
+  },
+  {
+    "objectID": "presentation 1.html#merge-결과",
+    "href": "presentation 1.html#merge-결과",
+    "title": "presentation 1",
+    "section": "merge 결과",
+    "text": "merge 결과\n\nmarket_pop.head()\n\n\n\n\n\n\n\n\nregion\nmarket_count\nstore_sum\ncertificate_count\ntotal_pop\nunder20\n2050\nover60\n\n\n\n\n0\n강원도\n58\n6811\n54\n1549507\n294348\n894249\n360910\n\n\n1\n경기도\n130\n18977\n121\n12522606\n2730973\n7878980\n1912653\n\n\n2\n경상남도\n155\n18156\n102\n3364702\n702154\n2004453\n658095\n\n\n3\n경상북도\n149\n16582\n106\n2702826\n500721\n1544234\n657871\n\n\n4\n광주광역시\n26\n3411\n25\n1472199\n340705\n895137\n236357"
+  }
+]

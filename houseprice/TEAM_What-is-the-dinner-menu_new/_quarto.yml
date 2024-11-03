@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "TEAM_What-is-the-dinner-menu_new"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - presentation 0.qmd
+      - presentation 1.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+

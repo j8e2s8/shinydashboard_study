@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_14937894e50945a4c1d984931c871c32 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_14937894e50945a4c1d984931c871c32" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_14937894e50945a4c1d984931c871c32 = L.map(
+                "map_14937894e50945a4c1d984931c871c32",
+                {
+                    center: [42.030806089293755, -93.6304970070205],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 13,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_771f229517c8d20bef6ac36ec5e90aa9 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_771f229517c8d20bef6ac36ec5e90aa9.addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var marker_af4868f85b2efc9ebecd219f48e5a5e0 = L.marker(
+                [42.0348485, -93.58827338],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_ef21f5f57742ff1304b79427d63881c6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_af4868f85b2efc9ebecd219f48e5a5e0.setIcon(icon_ef21f5f57742ff1304b79427d63881c6);
+        
+    
+        var popup_607276bb27c406910b53b6df2d1b5c64 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9f38952852541b0c0bacb57663e9b6bb = $(`<div id="html_9f38952852541b0c0bacb57663e9b6bb" style="width: 100.0%; height: 100.0%;">MercyOne Iowa Heart Center Ames<br>Type: medical</div>`)[0];
+                popup_607276bb27c406910b53b6df2d1b5c64.setContent(html_9f38952852541b0c0bacb57663e9b6bb);
+            
+        
+
+        marker_af4868f85b2efc9ebecd219f48e5a5e0.bindPopup(popup_607276bb27c406910b53b6df2d1b5c64)
+        ;
+
+        
+    
+    
+            var marker_79877ce0fe4acefe3563f780ae10a8b6 = L.marker(
+                [42.02250376, -93.66627287],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_0a63e1d8e0b849927cb6af4581b7545c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_79877ce0fe4acefe3563f780ae10a8b6.setIcon(icon_0a63e1d8e0b849927cb6af4581b7545c);
+        
+    
+        var popup_c6cf08160f240deff795910708168567 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a3d7198550a167a15e31276a35230a28 = $(`<div id="html_a3d7198550a167a15e31276a35230a28" style="width: 100.0%; height: 100.0%;">Primary Health Care Medical & Dental - Ames<br>Type: medical</div>`)[0];
+                popup_c6cf08160f240deff795910708168567.setContent(html_a3d7198550a167a15e31276a35230a28);
+            
+        
+
+        marker_79877ce0fe4acefe3563f780ae10a8b6.bindPopup(popup_c6cf08160f240deff795910708168567)
+        ;
+
+        
+    
+    
+            var marker_e85ebdfa0b417b7acdecf906ef7d673d = L.marker(
+                [42.02150549, -93.66788421],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_24be52fd8a87306fab89d10a44f15e6f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e85ebdfa0b417b7acdecf906ef7d673d.setIcon(icon_24be52fd8a87306fab89d10a44f15e6f);
+        
+    
+        var popup_064430089c5db64feb9b01d44fbebdef = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d01562ce503289b6bb936ddfbfc80587 = $(`<div id="html_d01562ce503289b6bb936ddfbfc80587" style="width: 100.0%; height: 100.0%;">McFarland Clinic - West Ames Office<br>Type: medical</div>`)[0];
+                popup_064430089c5db64feb9b01d44fbebdef.setContent(html_d01562ce503289b6bb936ddfbfc80587);
+            
+        
+
+        marker_e85ebdfa0b417b7acdecf906ef7d673d.bindPopup(popup_064430089c5db64feb9b01d44fbebdef)
+        ;
+
+        
+    
+    
+            var marker_517681ea02af96937d714db59a63214f = L.marker(
+                [42.02575566, -93.65389514],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_934f119491aeeb7427a1bac1c9580e56 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_517681ea02af96937d714db59a63214f.setIcon(icon_934f119491aeeb7427a1bac1c9580e56);
+        
+    
+        var popup_13439f341772fcd8b957244e01346c58 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_aa071f7e0c4c9ef8399a3e690930567c = $(`<div id="html_aa071f7e0c4c9ef8399a3e690930567c" style="width: 100.0%; height: 100.0%;">Thielen Student Health Center<br>Type: medical</div>`)[0];
+                popup_13439f341772fcd8b957244e01346c58.setContent(html_aa071f7e0c4c9ef8399a3e690930567c);
+            
+        
+
+        marker_517681ea02af96937d714db59a63214f.bindPopup(popup_13439f341772fcd8b957244e01346c58)
+        ;
+
+        
+    
+    
+            var marker_ad21a4e969cef4c2792edc2e455f2966 = L.marker(
+                [42.02116071, -93.65148903],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_9922b7116129bd9c40b1803da4780afe = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ad21a4e969cef4c2792edc2e455f2966.setIcon(icon_9922b7116129bd9c40b1803da4780afe);
+        
+    
+        var popup_2d2a8d1115d08968ec99ece19513fa60 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_adebbc680ba8a27add79f55da1f06e70 = $(`<div id="html_adebbc680ba8a27add79f55da1f06e70" style="width: 100.0%; height: 100.0%;">Planned Parenthood - Ames Health Center<br>Type: medical</div>`)[0];
+                popup_2d2a8d1115d08968ec99ece19513fa60.setContent(html_adebbc680ba8a27add79f55da1f06e70);
+            
+        
+
+        marker_ad21a4e969cef4c2792edc2e455f2966.bindPopup(popup_2d2a8d1115d08968ec99ece19513fa60)
+        ;
+
+        
+    
+    
+            var marker_9b2b84b8ed9caf1da81440f06fc256e8 = L.marker(
+                [41.99087448, -93.63782661],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_675d6ab0162c5cb7c74259181cbb1989 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9b2b84b8ed9caf1da81440f06fc256e8.setIcon(icon_675d6ab0162c5cb7c74259181cbb1989);
+        
+    
+        var popup_b03bdc54e9d2c160a7c97b9bbf6ca1a3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8ba47182fe30203ef95b4b42cd38d3ce = $(`<div id="html_8ba47182fe30203ef95b4b42cd38d3ce" style="width: 100.0%; height: 100.0%;">McFarland Clinic - South Ames Office<br>Type: medical</div>`)[0];
+                popup_b03bdc54e9d2c160a7c97b9bbf6ca1a3.setContent(html_8ba47182fe30203ef95b4b42cd38d3ce);
+            
+        
+
+        marker_9b2b84b8ed9caf1da81440f06fc256e8.bindPopup(popup_b03bdc54e9d2c160a7c97b9bbf6ca1a3)
+        ;
+
+        
+    
+    
+            var marker_ebb5f709f1b62e5aa046d01a920feb2f = L.marker(
+                [41.99965164, -93.64121939],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_6c0c1435c522e01e5a0b5b62c942329a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ebb5f709f1b62e5aa046d01a920feb2f.setIcon(icon_6c0c1435c522e01e5a0b5b62c942329a);
+        
+    
+        var popup_a31845ac22564f31e29c1f1069432527 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_de9dfce33536dec4ef24eb4b6442aac5 = $(`<div id="html_de9dfce33536dec4ef24eb4b6442aac5" style="width: 100.0%; height: 100.0%;">UnityPoint Health - Eyerly Ball - Ames<br>Type: medical</div>`)[0];
+                popup_a31845ac22564f31e29c1f1069432527.setContent(html_de9dfce33536dec4ef24eb4b6442aac5);
+            
+        
+
+        marker_ebb5f709f1b62e5aa046d01a920feb2f.bindPopup(popup_a31845ac22564f31e29c1f1069432527)
+        ;
+
+        
+    
+    
+            var marker_5883889727008ea73baa335ddc011f83 = L.marker(
+                [42.00762834, -93.60767932],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_04b4141062840c7ef1d393fed456d4ef = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5883889727008ea73baa335ddc011f83.setIcon(icon_04b4141062840c7ef1d393fed456d4ef);
+        
+    
+        var popup_3b287270374a61598af22a3bd07bbd17 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e0da20f1d48418f3030300047b688be7 = $(`<div id="html_e0da20f1d48418f3030300047b688be7" style="width: 100.0%; height: 100.0%;">Richmond Center<br>Type: medical</div>`)[0];
+                popup_3b287270374a61598af22a3bd07bbd17.setContent(html_e0da20f1d48418f3030300047b688be7);
+            
+        
+
+        marker_5883889727008ea73baa335ddc011f83.bindPopup(popup_3b287270374a61598af22a3bd07bbd17)
+        ;
+
+        
+    
+    
+            var marker_92e4302dd0bd859a5e9a6d598120980b = L.marker(
+                [42.03277405, -93.61160342],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_dae77ef1652245d1773091a4e9ca4bbe = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_92e4302dd0bd859a5e9a6d598120980b.setIcon(icon_dae77ef1652245d1773091a4e9ca4bbe);
+        
+    
+        var popup_a78051fb2a605045216f465e65a289a5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3d9913334d3bceadf9e9c0839ae73302 = $(`<div id="html_3d9913334d3bceadf9e9c0839ae73302" style="width: 100.0%; height: 100.0%;">Mary Greeley Medical Center<br>Type: medical</div>`)[0];
+                popup_a78051fb2a605045216f465e65a289a5.setContent(html_3d9913334d3bceadf9e9c0839ae73302);
+            
+        
+
+        marker_92e4302dd0bd859a5e9a6d598120980b.bindPopup(popup_a78051fb2a605045216f465e65a289a5)
+        ;
+
+        
+    
+    
+            var marker_737150d4c23f821f38bfac7dfb3cff5d = L.marker(
+                [42.0182295, -93.67767227],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_e1f2816b4618b3dbc4fe9b4effc9b713 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_737150d4c23f821f38bfac7dfb3cff5d.setIcon(icon_e1f2816b4618b3dbc4fe9b4effc9b713);
+        
+    
+        var popup_24a08d5dcec9b2717edf24d5da5fb6b7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_31c20d49772753773179948e632e532a = $(`<div id="html_31c20d49772753773179948e632e532a" style="width: 100.0%; height: 100.0%;">Israel Family Hospice House<br>Type: medical</div>`)[0];
+                popup_24a08d5dcec9b2717edf24d5da5fb6b7.setContent(html_31c20d49772753773179948e632e532a);
+            
+        
+
+        marker_737150d4c23f821f38bfac7dfb3cff5d.bindPopup(popup_24a08d5dcec9b2717edf24d5da5fb6b7)
+        ;
+
+        
+    
+    
+            var marker_656abd9c12da1324afa62fe3bca9aec6 = L.marker(
+                [42.00880229, -93.6240573],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_912d96c6c0350e563a4de6e06b3ea5a8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "book", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_656abd9c12da1324afa62fe3bca9aec6.setIcon(icon_912d96c6c0350e563a4de6e06b3ea5a8);
+        
+    
+        var popup_a3b85eef9befd09fe33d171ffaac1db5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ceac282adf16d51ae84a60ab616c9d3a = $(`<div id="html_ceac282adf16d51ae84a60ab616c9d3a" style="width: 100.0%; height: 100.0%;">Ames Christian School<br>Type: school</div>`)[0];
+                popup_a3b85eef9befd09fe33d171ffaac1db5.setContent(html_ceac282adf16d51ae84a60ab616c9d3a);
+            
+        
+
+        marker_656abd9c12da1324afa62fe3bca9aec6.bindPopup(popup_a3b85eef9befd09fe33d171ffaac1db5)
+        ;
+
+        
+    
+    
+            var marker_d60c398de44fb118f27fcd53656ce74a = L.marker(
+                [42.0500032, -93.62832394],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_9e897c99b43cfab8ab5ace1a527b2ee3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "book", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_d60c398de44fb118f27fcd53656ce74a.setIcon(icon_9e897c99b43cfab8ab5ace1a527b2ee3);
+        
+    
+        var popup_ff9d1fb0646fc6ef4c2c2832bcd1ce54 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7b23c7497b9a06ddf3ff359e11bda28b = $(`<div id="html_7b23c7497b9a06ddf3ff359e11bda28b" style="width: 100.0%; height: 100.0%;">St. Cecilia Catholic School<br>Type: school</div>`)[0];
+                popup_ff9d1fb0646fc6ef4c2c2832bcd1ce54.setContent(html_7b23c7497b9a06ddf3ff359e11bda28b);
+            
+        
+
+        marker_d60c398de44fb118f27fcd53656ce74a.bindPopup(popup_ff9d1fb0646fc6ef4c2c2832bcd1ce54)
+        ;
+
+        
+    
+    
+            var marker_be50bd4169a7ba4412b6f38ba261727c = L.marker(
+                [42.0339747, -93.67713176],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_4e925b4072f317fef54f30b336ce1aee = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "book", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_be50bd4169a7ba4412b6f38ba261727c.setIcon(icon_4e925b4072f317fef54f30b336ce1aee);
+        
+    
+        var popup_d2137d51b7a0eec440022c02e5222b80 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_79f48673acbadd352bf38717022caa60 = $(`<div id="html_79f48673acbadd352bf38717022caa60" style="width: 100.0%; height: 100.0%;">Sawyer Elementary School<br>Type: school</div>`)[0];
+                popup_d2137d51b7a0eec440022c02e5222b80.setContent(html_79f48673acbadd352bf38717022caa60);
+            
+        
+
+        marker_be50bd4169a7ba4412b6f38ba261727c.bindPopup(popup_d2137d51b7a0eec440022c02e5222b80)
+        ;
+
+        
+    
+    
+            var marker_186e082dec0969237f95111806eeae68 = L.marker(
+                [41.9902326, -93.60088499],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_e934f1b4476a82725efcbc599db3c98c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "book", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_186e082dec0969237f95111806eeae68.setIcon(icon_e934f1b4476a82725efcbc599db3c98c);
+        
+    
+        var popup_aacb95c1149182208b871c7debf6db80 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_cf03386958a4d5cc6c2fb8fdd855a843 = $(`<div id="html_cf03386958a4d5cc6c2fb8fdd855a843" style="width: 100.0%; height: 100.0%;">Mitchell Elementary School<br>Type: school</div>`)[0];
+                popup_aacb95c1149182208b871c7debf6db80.setContent(html_cf03386958a4d5cc6c2fb8fdd855a843);
+            
+        
+
+        marker_186e082dec0969237f95111806eeae68.bindPopup(popup_aacb95c1149182208b871c7debf6db80)
+        ;
+
+        
+    
+    
+            var marker_ad7dcb9c2bc319a68aa094ae6ac88144 = L.marker(
+                [42.01584744, -93.68557969],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_807d45284ae2669ed697d386f1bd3811 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "book", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_ad7dcb9c2bc319a68aa094ae6ac88144.setIcon(icon_807d45284ae2669ed697d386f1bd3811);
+        
+    
+        var popup_de78f8c9eef325e3383bd0e1b8798c81 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6b3c059bedfc2f9c8d12fb5fd2b6a180 = $(`<div id="html_6b3c059bedfc2f9c8d12fb5fd2b6a180" style="width: 100.0%; height: 100.0%;">Edwards Elementary School<br>Type: school</div>`)[0];
+                popup_de78f8c9eef325e3383bd0e1b8798c81.setContent(html_6b3c059bedfc2f9c8d12fb5fd2b6a180);
+            
+        
+
+        marker_ad7dcb9c2bc319a68aa094ae6ac88144.bindPopup(popup_de78f8c9eef325e3383bd0e1b8798c81)
+        ;
+
+        
+    
+    
+            var marker_f6e092501a470c5169a89c53172397fd = L.marker(
+                [42.04032008, -93.61450549],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_476a51169a167b9ebc05cca36b852cac = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "book", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_f6e092501a470c5169a89c53172397fd.setIcon(icon_476a51169a167b9ebc05cca36b852cac);
+        
+    
+        var popup_b49d8e5946adf82cc3d187acfeee8fed = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_94952d4d2a33a748676f5920822be06c = $(`<div id="html_94952d4d2a33a748676f5920822be06c" style="width: 100.0%; height: 100.0%;">Meeker Elementary School<br>Type: school</div>`)[0];
+                popup_b49d8e5946adf82cc3d187acfeee8fed.setContent(html_94952d4d2a33a748676f5920822be06c);
+            
+        
+
+        marker_f6e092501a470c5169a89c53172397fd.bindPopup(popup_b49d8e5946adf82cc3d187acfeee8fed)
+        ;
+
+        
+    
+    
+            var marker_17c9d9fc0303299f5449fad199e56702 = L.marker(
+                [42.04286966, -93.62719316],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_ba2614c27652e8f5a1f5bfb4bc17cd11 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "book", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_17c9d9fc0303299f5449fad199e56702.setIcon(icon_ba2614c27652e8f5a1f5bfb4bc17cd11);
+        
+    
+        var popup_ce79370e1ca458746b384abbd3833284 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1fd2a958f235b071ba211ba21657242e = $(`<div id="html_1fd2a958f235b071ba211ba21657242e" style="width: 100.0%; height: 100.0%;">Fellows Elementary School<br>Type: school</div>`)[0];
+                popup_ce79370e1ca458746b384abbd3833284.setContent(html_1fd2a958f235b071ba211ba21657242e);
+            
+        
+
+        marker_17c9d9fc0303299f5449fad199e56702.bindPopup(popup_ce79370e1ca458746b384abbd3833284)
+        ;
+
+        
+    
+    
+            var marker_ee9a0303391ee81f90ca6983e76bbe42 = L.marker(
+                [42.01329553, -93.6716591],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_47dcafbdc33c2e3238c7a1f0b5d05b89 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "book", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_ee9a0303391ee81f90ca6983e76bbe42.setIcon(icon_47dcafbdc33c2e3238c7a1f0b5d05b89);
+        
+    
+        var popup_2ef23b01709188ebdceb1374da2cc222 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3028885b073abdd8a251ef34d7fa8afd = $(`<div id="html_3028885b073abdd8a251ef34d7fa8afd" style="width: 100.0%; height: 100.0%;">Ames Middle School<br>Type: school</div>`)[0];
+                popup_2ef23b01709188ebdceb1374da2cc222.setContent(html_3028885b073abdd8a251ef34d7fa8afd);
+            
+        
+
+        marker_ee9a0303391ee81f90ca6983e76bbe42.bindPopup(popup_2ef23b01709188ebdceb1374da2cc222)
+        ;
+
+        
+    
+    
+            var marker_0518a16f03506dbd98a31c0ee3532a60 = L.marker(
+                [42.04002114, -93.63529859],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_604ae847346e45cfe71904300a509e00 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "book", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_0518a16f03506dbd98a31c0ee3532a60.setIcon(icon_604ae847346e45cfe71904300a509e00);
+        
+    
+        var popup_081bea449a42711232172a66b2ba3e44 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e617d4aaed9f64e8918665ebf64a626d = $(`<div id="html_e617d4aaed9f64e8918665ebf64a626d" style="width: 100.0%; height: 100.0%;">Ames High School<br>Type: school</div>`)[0];
+                popup_081bea449a42711232172a66b2ba3e44.setContent(html_e617d4aaed9f64e8918665ebf64a626d);
+            
+        
+
+        marker_0518a16f03506dbd98a31c0ee3532a60.bindPopup(popup_081bea449a42711232172a66b2ba3e44)
+        ;
+
+        
+    
+    
+            var marker_226643c89e098ca7b1270100af6df059 = L.marker(
+                [42.00787266, -93.61556526],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_552152ba3c1ea3401d1862121c7f1f84 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_226643c89e098ca7b1270100af6df059.setIcon(icon_552152ba3c1ea3401d1862121c7f1f84);
+        
+    
+        var popup_0aed77d42101fbc56a44b5b96afd5795 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_90e728638205c309dd04536d67f7f7f6 = $(`<div id="html_90e728638205c309dd04536d67f7f7f6" style="width: 100.0%; height: 100.0%;">Obria Medical Clinics - Ames<br>Type: medical</div>`)[0];
+                popup_0aed77d42101fbc56a44b5b96afd5795.setContent(html_90e728638205c309dd04536d67f7f7f6);
+            
+        
+
+        marker_226643c89e098ca7b1270100af6df059.bindPopup(popup_0aed77d42101fbc56a44b5b96afd5795)
+        ;
+
+        
+    
+    
+            var marker_8b8039eb6fa3a25b070fda2f03df9e4c = L.marker(
+                [42.03183023, -93.61022782],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_20d7e11b9d6ba8efe321743e8fac088c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8b8039eb6fa3a25b070fda2f03df9e4c.setIcon(icon_20d7e11b9d6ba8efe321743e8fac088c);
+        
+    
+        var popup_9c0f4e21dd440ed81f3589477c5de09c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8d461960d91c9c3e16ede4b97de11cda = $(`<div id="html_8d461960d91c9c3e16ede4b97de11cda" style="width: 100.0%; height: 100.0%;">McFarland Clinic - Family Medicine East Office<br>Type: medical</div>`)[0];
+                popup_9c0f4e21dd440ed81f3589477c5de09c.setContent(html_8d461960d91c9c3e16ede4b97de11cda);
+            
+        
+
+        marker_8b8039eb6fa3a25b070fda2f03df9e4c.bindPopup(popup_9c0f4e21dd440ed81f3589477c5de09c)
+        ;
+
+        
+    
+    
+            var marker_6739330a0027a948dbf1254ae6285778 = L.marker(
+                [42.0337054, -93.61209734],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_d6b56bc99ebbeab12e64aafd4f394a20 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6739330a0027a948dbf1254ae6285778.setIcon(icon_d6b56bc99ebbeab12e64aafd4f394a20);
+        
+    
+        var popup_04fa39d62b4370bc4d4a234802deb439 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6f7f1c7d6559e2d6b6aa1d2908873d26 = $(`<div id="html_6f7f1c7d6559e2d6b6aa1d2908873d26" style="width: 100.0%; height: 100.0%;">McFarland Clinic - 1215 Duff Avenue Office<br>Type: medical</div>`)[0];
+                popup_04fa39d62b4370bc4d4a234802deb439.setContent(html_6f7f1c7d6559e2d6b6aa1d2908873d26);
+            
+        
+
+        marker_6739330a0027a948dbf1254ae6285778.bindPopup(popup_04fa39d62b4370bc4d4a234802deb439)
+        ;
+
+        
+    
+    
+            var marker_c7aea5f709fa996711d6bd09e4048398 = L.marker(
+                [42.0580328, -93.64662111],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_a1b215ce8ba3a669ae57c9a779ac6d95 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c7aea5f709fa996711d6bd09e4048398.setIcon(icon_a1b215ce8ba3a669ae57c9a779ac6d95);
+        
+    
+        var popup_cd7f6682c10cb4931afde7ee8d6aca2b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b08c8fa377d8fa2c5245632b02332a10 = $(`<div id="html_b08c8fa377d8fa2c5245632b02332a10" style="width: 100.0%; height: 100.0%;">McFarland Clinic - North Ames Office<br>Type: medical</div>`)[0];
+                popup_cd7f6682c10cb4931afde7ee8d6aca2b.setContent(html_b08c8fa377d8fa2c5245632b02332a10);
+            
+        
+
+        marker_c7aea5f709fa996711d6bd09e4048398.bindPopup(popup_cd7f6682c10cb4931afde7ee8d6aca2b)
+        ;
+
+        
+    
+    
+            var marker_0b741a329df1cad1f1ecb1984300e295 = L.marker(
+                [42.04604383, -93.62161776],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_b7d9a3c861bbfb715aae857ff5fec368 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_0b741a329df1cad1f1ecb1984300e295.setIcon(icon_b7d9a3c861bbfb715aae857ff5fec368);
+        
+    
+        var popup_476a91b44f7250f4da2cf56bb5c94eab = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_187037253784400dcd9adc4eb6347696 = $(`<div id="html_187037253784400dcd9adc4eb6347696" style="width: 100.0%; height: 100.0%;">Catalyst Clinic<br>Type: medical</div>`)[0];
+                popup_476a91b44f7250f4da2cf56bb5c94eab.setContent(html_187037253784400dcd9adc4eb6347696);
+            
+        
+
+        marker_0b741a329df1cad1f1ecb1984300e295.bindPopup(popup_476a91b44f7250f4da2cf56bb5c94eab)
+        ;
+
+        
+    
+    
+            var marker_df5f745ce0c8c0d4b36cfbc84dae9b14 = L.marker(
+                [42.00746889, -93.6178906],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_aeb714dc2e998ecb4f83b2cbde120515 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_df5f745ce0c8c0d4b36cfbc84dae9b14.setIcon(icon_aeb714dc2e998ecb4f83b2cbde120515);
+        
+    
+        var popup_4c659d4839db6cc60a59c89ae8ab5a40 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d2fb6098f4f6442287fc9bcc5816bc69 = $(`<div id="html_d2fb6098f4f6442287fc9bcc5816bc69" style="width: 100.0%; height: 100.0%;">Hemken Family Medicine<br>Type: medical</div>`)[0];
+                popup_4c659d4839db6cc60a59c89ae8ab5a40.setContent(html_d2fb6098f4f6442287fc9bcc5816bc69);
+            
+        
+
+        marker_df5f745ce0c8c0d4b36cfbc84dae9b14.bindPopup(popup_4c659d4839db6cc60a59c89ae8ab5a40)
+        ;
+
+        
+    
+    
+            var marker_c36f5c2be3da449f27f0869f61148e6e = L.marker(
+                [42.02993355, -93.64836256],
+                {}
+            ).addTo(map_14937894e50945a4c1d984931c871c32);
+        
+    
+            var icon_7de9e8e35df9279e189786c65f9bc491 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plus", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c36f5c2be3da449f27f0869f61148e6e.setIcon(icon_7de9e8e35df9279e189786c65f9bc491);
+        
+    
+        var popup_2281e402f21d530418c1824248ea8415 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_42a12015516e1037b10a303f6ab85937 = $(`<div id="html_42a12015516e1037b10a303f6ab85937" style="width: 100.0%; height: 100.0%;">Occupational Medicine<br>Type: medical</div>`)[0];
+                popup_2281e402f21d530418c1824248ea8415.setContent(html_42a12015516e1037b10a303f6ab85937);
+            
+        
+
+        marker_c36f5c2be3da449f27f0869f61148e6e.bindPopup(popup_2281e402f21d530418c1824248ea8415)
+        ;
+
+        
+    
+</script>
+</html>
